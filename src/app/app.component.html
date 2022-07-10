@@ -1,0 +1,23 @@
+<div class="navbar-parent">
+    <div class="navbar-child margin-left">
+        <div class="div-child choice" *ngIf="!this.authService.isLoggedIn()" routerLink="/connect">Se connecter</div>
+        <div class="div-child name" *ngIf="this.authService.isLoggedIn()">Bienvenue {{ this.getUserSession().pseudo }}</div>
+    </div>
+    <div class="navbar-child" [ngClass]="{'navbar-right' : !this.authService.isLoggedIn()}">
+        <div *ngIf="this.authService.isLoggedIn() && this.getUserSession().currentMatch?.state != 'PLAYING'" class="div-child choice" routerLink="/rejoindre">Rejoindre un match</div>
+        <div *ngIf="this.authService.isLoggedIn() && this.getUserSession().currentMatch?.state == 'PLAYING'" class="div-child choice" routerLink="/jouer">Rejoindre le match</div>
+        <div class="div-child choice" routerLink="/resultats">Résultats des matchs</div>
+        <div class="div-child choice" routerLink="/classements">Classement des joueurs</div>
+        <div *ngIf="this.authService.isLoggedIn()" class="div-child choice" routerLink="/historique">Votre historique</div>
+    </div>
+
+    <div class="navbar-child navbar-right" *ngIf="this.authService.isLoggedIn()">
+        <div class="div-child choice" (click)="seDeconnecter()">Se deconnecter</div>
+    </div>
+</div>
+
+<div class="html">
+    <router-outlet></router-outlet>
+</div>
+
+<simple-notifications></simple-notifications>

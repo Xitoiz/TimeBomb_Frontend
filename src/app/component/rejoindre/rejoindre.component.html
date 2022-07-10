@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-1"></div>
+    <div class="card text-white bg-dark col-10">
+        <div class="card-header div-flex-row">
+            <h5>Liste des matchs en cours</h5>
+            <h5>Liste des matchs en cours</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th>Id du match</th>
+                        <th>Nom du match</th>
+                        <th>Liste des joueurs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td><input type="text" class="selectBorder form-control m-1" [(ngModel)]="match.name"
+                                required></td>
+                        <td></td>
+                        <td>
+                            <button class="btn btn-light m-2" (click)="creerMatch()">Créer le match</button>
+                        </td>
+                    </tr>
+                    <tr *ngFor="let match of listOfMatch">
+                            <td>{{ match.id }}</td>
+                            <td>{{ match.name }}</td>
+                            <td>
+                                <p *ngFor="let p of match.playerList">
+                                    {{ p.pseudo }}
+                                </p>
+                            </td>
+                            <td>
+                                <div class="div-flex-col">
+                                    <button *ngIf="afficherDemarrer(match) && match.playerList.length > 3 && match.playerList.length < 9" type="button" class="btn btn-success btn-rezise"
+                                        (click)="startMatch()">Demarrer</button>
+                                    <button *ngIf="afficherJouer(match) && match.playerList.length > 3 && match.playerList.length < 9" type="button" class="btn btn-success btn-rezise"
+                                            (click)="startMatch()">Jouer</button>
+                                    <button *ngIf="afficherRejoindre()" type="button" class="btn btn-primary btn-rezise"
+                                        (click)="joinMatch(match)">Rejoindre</button>
+                                    <button *ngIf="afficherQuitter(match)" type="button" class="btn btn-primary btn-rezise"
+                                        (click)="leaveMatch(match)">Quitter</button>
+                                </div>
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

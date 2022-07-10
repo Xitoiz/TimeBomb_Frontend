@@ -1,10 +1,39 @@
 import { Component } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
+import { User } from './model/user';
+import { AuthService } from './service/auth.service';
+import { MatchService } from './service/match.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Timebomb';
+    title = 'Timebomb';
+
+    constructor(
+        public authService: AuthService,
+        public matchService: MatchService
+    ) {}
+
+    public seDeconnecter() {
+        this.authService.logout();
+    }
+
+    public getUserSession(): User {
+        return this.authService.userSession
+    }
+
+    public getMatchState() {
+        if (!this.getUserSession()?.currentMatch) {return ""}
+        return this.getUserSession().currentMatch.state
+    }
+
+    public async quitter() {
+        await lastValueFrom(this.matchService.leaveMatch(this.getUserSession().currentMatch))
+            .then(() => this.authService.reloadUserMatch());
+    }
+
+
 }

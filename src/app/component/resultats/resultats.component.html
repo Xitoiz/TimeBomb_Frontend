@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-1"></div>
+    <div class="card text-white bg-dark col-10">
+        <div class="card-header">
+            <h5>Liste des matchs terminées</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th>Id du match</th>
+                        <th>Rôle gagnant</th>
+                        <th>Team Sherlock</th>
+                        <th>Team Moriarty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let m of matchResultList">
+                        <td>{{ m.id }}</td>
+                        <td>{{ m.winnerRole }}</td>
+                        <ng-container *ngIf="m.winnerRole == 'SHERLOCK'">
+                            <td>
+                                <a style="color:rgb(45, 198, 45)" *ngFor="let p of m.winners">
+                                    {{ p.pseudo }},
+                                </a>
+                            </td>
+                            <td>
+                                <a style="color:red" *ngFor="let p of m.loosers">
+                                    {{ p.pseudo }},
+                                </a>
+                            </td>
+                        </ng-container>
+                        <ng-container *ngIf="m.winnerRole == 'MORIARTY'">
+                            <td>
+                                <a style="color:red" *ngFor="let p of m.loosers">
+                                    {{ p.pseudo }},
+                                </a>
+                            </td>
+                            <td>
+                                <a style="color:rgb(45, 198, 45)" *ngFor="let p of m.winners">
+                                    {{ p.pseudo }},
+                                </a>
+                            </td>
+                        </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

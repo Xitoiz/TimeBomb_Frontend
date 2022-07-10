@@ -1,0 +1,24 @@
+tr > th{
+    border-bottom: solid !important;
+}
+
+th {
+    border-left: solid !important;
+    border-right: solid !important;
+}
+
+th:first-child {
+    border-left: none !important;
+    border-right: none !important;
+}
+
+
+td {
+    border-left: solid !important;
+    border-right: solid !important;
+}
+
+td:first-child {
+    border-left: none !important;
+    border-right: none !important;
+}

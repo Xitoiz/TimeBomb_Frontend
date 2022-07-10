@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-3"></div>
+    <div class="card col-6 text-white bg-dark">
+        <div class="card-header" *ngIf="!inscription">
+            <h3 class="card-title">Connexion</h3>
+            <p class="text-white-50">Please enter your login and password!</p>
+        </div>
+        <div class="card-header" *ngIf="inscription">
+            <h3 class="card-title">Inscription</h3>
+            <p class="text-white-50">Please fill the inscription form</p>
+        </div>
+        <div class="card-body">
+            <div class = "row">
+                <div class = "col-2"></div>
+                <div class = "col-8">
+                    <input type="text" class = "form-control margin-top" name="login" placeholder="Enter your pseudo" *ngIf="inscription" [(ngModel)]="user.pseudo" />
+                    <input type="text" class = "form-control margin-top" name="login" placeholder="Enter Login" [(ngModel)]="user.login" />
+                    <input type="password" class = "form-control margin-top" name="password" placeholder="Enter Password" [(ngModel)]="user.password" required />
+                </div>
+                <div class = "col-2"></div>
+            </div>
+        </div>
+        <div class="card-footer" *ngIf="!inscription">
+            <input type="submit" class = "btn-green m-2 col-8" value="Se connecter" (click)="seConnecter()"/>
+            <p class="mb-0">Don't have an account? <a (click)="signInBoolean()" class="text-white-50 fw-bold" style="cursor: pointer">Sign Up</a>
+            </p>
+        </div>
+        <div class="card-footer" *ngIf="inscription">
+            <input type="submit" class = "btn-green m-2 col-8" value="S'inscrire" (click)="inscrire()"/>
+            <p class="mb-0">Already have an account? <a (click)="logInBoolean()" class="text-white-50 fw-bold" style="cursor: pointer">Log in</a>
+            </p>
+        </div>
+    </div>
+    <div class = "col-3"></div>
+</div>
+
+
