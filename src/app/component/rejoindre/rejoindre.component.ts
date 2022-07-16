@@ -59,10 +59,10 @@ export class RejoindreComponent implements OnInit {
     }
 
     public async creerMatch(): Promise<void> {
-        // if (!this.match.name) {
-        //     this.notificationService.errorAlert("NAME REQUIRED");
-        //     return;
-        // }
+         if (!this.match.name) {
+             this.notificationService.errorAlert("NAME REQUIRED");
+             return;
+         }
         await lastValueFrom(this.srvMatch.createMatch(this.match))
         .then(() => this.initialisation())
         .catch((event) => {
