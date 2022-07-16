@@ -1,0 +1,48 @@
+.navbar-parent {
+    height: 7vh;
+    min-height: 42px;
+    width: 100vw;
+    background-color: #343637;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.navbar-child {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbar-right {
+    justify-content: flex-end;
+    margin-right: 15px
+}
+
+.div-child {
+    color: white;
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+}
+
+.name {
+    background-color: #08b092;
+    font-weight: bold;
+}
+
+.choice:hover {
+    background-color: #08b092;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.margin-left {
+    margin-left: 15px
+}

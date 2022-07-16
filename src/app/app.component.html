@@ -1,0 +1,19 @@
+<div class="navbar-parent">
+    <div class="navbar-child margin-left">
+        <div class="div-child choice" *ngIf="!this.authService.isLoggedIn()" routerLink="/connect">Se connecter</div>
+        <div class="div-child name" *ngIf="this.authService.isLoggedIn()">Bienvenue {{ this.getUserSession().pseudo }}</div>
+    </div>
+    <div class="navbar-child" [ngClass]="{'navbar-right' : !this.authService.isLoggedIn()}">
+        <div *ngIf="this.authService.isLoggedIn()" class="div-child choice" routerLink="/player">Player</div>
+        <div *ngIf="this.authService.isLoggedIn() && this.authService.getRole() == 'ADMIN'" class="div-child choice" routerLink="/player">Player (ADMIN)</div>
+        <div *ngIf="this.authService.isLoggedIn()" class="div-child choice" routerLink="/admin">Admin</div>
+    </div>
+
+    <div class="navbar-child navbar-right" *ngIf="this.authService.isLoggedIn()">
+        <div class="div-child choice" (click)="seDeconnecter()">Se deconnecter</div>
+    </div>
+</div>
+
+<div class="html">
+    <router-outlet></router-outlet>
+</div>
